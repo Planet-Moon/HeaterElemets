@@ -82,6 +82,7 @@ def main():
     power_manager = PowerManager(sources, sinks)
 
     run = True
+    logger.info("Running")
     while run:
         try:
             power_manager.distribute()

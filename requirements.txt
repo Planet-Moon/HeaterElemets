@@ -1,0 +1,5 @@
+wheel
+pymodbus
+requests
+flask-restful
+paho-mqtt

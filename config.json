@@ -1,0 +1,127 @@
+{
+    "Modbus": {
+        "Heizung": {
+            "ip": "192.168.0.23",
+            "port": "502",
+            "registers": [
+                {
+                    "name": "SpeicherOben",
+                    "address": "2",
+                    "length": "1",
+                    "factor": "0.1",
+                    "unit": "°C",
+                    "type": "float"
+                },
+                {
+                    "name": "SpeicherMitte",
+                    "address": "5",
+                    "length": "1",
+                    "factor": "0.1",
+                    "unit": "°C",
+                    "type": "float"
+                },
+                {
+                    "name": "SolarKollektor",
+                    "address": "7",
+                    "length": "1",
+                    "factor": "0.1",
+                    "unit": "°C",
+                    "type": "float"
+                },
+                {
+                    "name": "AktuellerVerbrauch",
+                    "address":"8",
+                    "length":"1",
+                    "factor":"1",
+                    "unit":"W",
+                    "type":"int"
+                },
+                {
+                    "name": "Heizstab_Ein_nAus",
+                    "address": "64",
+                    "length": "1",
+                    "factor": "1",
+                    "type": "bool"
+                },
+                {
+                    "name": "Heizstab_SollTemp",
+                    "address": "65",
+                    "length": "1",
+                    "factor": "0.1",
+                    "unit": "°C",
+                    "type": "float"
+                },
+                {
+                    "name": "Heizstab_Stufe0",
+                    "address": "66",
+                    "length": "1",
+                    "factor": "1",
+                    "type": "bool"
+                },
+                {
+                    "name": "Heizstab_Stufe1",
+                    "address": "67",
+                    "length": "1",
+                    "factor": "1",
+                    "type": "bool"
+                },
+                {
+                    "name": "Heizstab_Stufe2",
+                    "address": "68",
+                    "length": "1",
+                    "factor": "1",
+                    "type": "bool"
+                }
+            ]
+        }
+    },
+    "SMA_Inverter": {
+        "Solar": [
+            {
+                "name": "140",
+                "ip": "192.168.0.140"
+            }
+        ],
+        "Batterie": [
+            {
+                "name": "147",
+                "ip": "192.168.0.147"
+            }
+        ]
+    },
+    "Heizstab": {
+        "Leistungsstufen": [
+            {
+                "Leistung": "0",
+                "modbusRegister": ["0","0","0"]
+            },
+            {
+                "Leistung": "1000",
+                "modbusRegister": ["0","0","0"]
+            },
+            {
+                "Leistung": "2000",
+                "modbusRegister": ["0","0","0"]
+            },
+            {
+                "Leistung": "3000",
+                "modbusRegister": ["1","0","0"]
+            }
+        ],
+        "modbusRegister": ["Heizstab_Stufe0","Heizstab_Stufe1","Heizstab_Stufe2"],
+        "Solltemp": "50"
+    },
+    "TelegramBot": {
+        "token": ""
+    },
+    "dataFile": {
+        "path": "/home/pi/HeizungSoftware/SMA_pyModbus/Modbus-Project/Heizung",
+        "name": "data.json",
+        "_comment": "Output file for data"
+    },
+    "logFile":{
+        "path": "/home/pi/HeizungSoftware/SMA_pyModbus/Modbus-Project/Heizung",
+        "name": "HeizungBot.log",
+        "_comment": "Output file for logs"
+    }
+}

@@ -36,6 +36,9 @@ def main():
         heatingCtrl = testHeatingCtrl()
     maxTemperature = 160
 
+    def read_temperature_sensor():
+        return 20
+
     heizstab0 = HeizstabElement(
         power=500,
         max_time_on=40,#900,
@@ -44,6 +47,9 @@ def main():
         name="heizstab0",
         thread_period=0.1#120
     )
+    heizstab0.external_switch_function = \
+        lambda x: heatingCtrl.write_register("Heizstab_Stufe0", int(x))
+    heizstab0.read_temperature_sensor = read_temperature_sensor
     heizstab0.temperature_max = maxTemperature
     heizstab0.mqtt_client = mqtt_client
 
@@ -55,6 +61,9 @@ def main():
         name="heizstab1",
         thread_period=0.1#120
     )
+    heizstab1.external_switch_function = \
+        lambda x: heatingCtrl.write_register("Heizstab_Stufe1", int(x))
+    heizstab1.read_temperature_sensor = read_temperature_sensor
     heizstab1.temperature_max = maxTemperature
     heizstab1.mqtt_client = mqtt_client
 
@@ -66,6 +75,9 @@ def main():
         name="heizstab2",
         thread_period=0.1#120
     )
+    heizstab2.external_switch_function = \
+        lambda x: heatingCtrl.write_register("Heizstab_Stufe2", int(x))
+    heizstab2.read_temperature_sensor = read_temperature_sensor
     heizstab2.temperature_max = maxTemperature
     heizstab2.mqtt_client = mqtt_client
 
@@ -139,9 +151,14 @@ def main():
             import copy
             time.sleep(heizstab0.thread.period*2)
             time_vector.append(datetime.now())
-            data_vector[0].append(int(heizstab0.on))
-            data_vector[1].append(int(heizstab1.on))
-            data_vector[2].append(int(heizstab2.on))
+            data_vector[0].append(heatingCtrl.read_value("Heizstab_Stufe0"))
+            data_vector[1].append(heatingCtrl.read_value("Heizstab_Stufe1"))
+            data_vector[2].append(heatingCtrl.read_value("Heizstab_Stufe2"))
+            a = [
+                int(heatingCtrl.read_value("Heizstab_Stufe0")),
+                int(heatingCtrl.read_value("Heizstab_Stufe1")),
+                int(heatingCtrl.read_value("Heizstab_Stufe2"))]
+            logger.info(a)
             status_vector[0].append(heizstab0.status[0])
             status_vector[1].append(heizstab1.status[0])
             status_vector[2].append(heizstab2.status[0])

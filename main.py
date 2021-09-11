@@ -20,7 +20,7 @@ os.chdir(dname)
 
 
 def main():
-    mqtt_client = MqttClient("192.168.178.107",1883)
+    mqtt_client = MqttClient("192.168.0.23",1883)
     mqtt_client.topic_prefix = "heating"
 
     heatingCtrl = HeatingCtrl()
@@ -31,9 +31,9 @@ def main():
 
     heizstab0 = HeizstabElement(
         power=1000,
-        max_time_on=40,  # 900,
-        min_time_on=10,
-        min_time_off=20,  # 1800,
+        max_time_on=10800, # 3h
+        min_time_on=900, # 15 min
+        min_time_off=1200, # 20 min
         name="heizstab0",
         thread_period=1  # 120
     )
@@ -45,9 +45,9 @@ def main():
 
     heizstab1 = HeizstabElement(
         power=1000,
-        max_time_on=40,  # 900,
-        min_time_on=10,
-        min_time_off=20,  # 1800,
+        max_time_on=10800, # 3h
+        min_time_on=900, # 15 min
+        min_time_off=1200, # 20 min
         name="heizstab1",
         thread_period=1  # 120
     )
@@ -59,9 +59,9 @@ def main():
 
     heizstab2 = HeizstabElement(
         power=1000,
-        max_time_on=40,  # 900,
-        min_time_on=10,
-        min_time_off=20,  # 1800,
+        max_time_on=10800, # 3h
+        min_time_on=900, # 15 min
+        min_time_off=1200, # 20 min
         name="heizstab2",
         thread_period=1  # 120
     )

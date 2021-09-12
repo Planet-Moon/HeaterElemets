@@ -83,7 +83,7 @@ class HeizstabElement(PowerSink):
 
     @on.setter
     def on(self,value:bool):
-        self.external_switch_function(value)
+        self.external_switch_function(int(value)*10)
         if self.mqtt_client:
             self._mqtt_client.publish(topic=self.name+"/on",payload=str(value),retain=True)
         self._on = value

@@ -81,7 +81,7 @@ def main():
 
     power_manager = PowerManager(sources, sinks)
     power_manager.power_buffer = 300
-    power_manager.power_grid = lambda: storageBoy.LeistungBezug - storageBoy.LeistungEinspeisung
+    power_manager.power_grid = lambda: storageBoy.LeistungBezug
 
     run = True
     logger.info("Running")

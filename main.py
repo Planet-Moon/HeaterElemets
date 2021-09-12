@@ -80,6 +80,7 @@ def main():
     sinks = [*heizstäbe]
 
     power_manager = PowerManager(sources, sinks)
+    power_manager.power_buffer = 300
     power_manager.power_grid = lambda: storageBoy.LeistungBezug - storageBoy.LeistungEinspeisung
 
     run = True
